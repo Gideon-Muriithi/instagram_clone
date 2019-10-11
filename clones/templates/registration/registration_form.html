@@ -1,0 +1,43 @@
+{%extends "registration/base.html"%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container-fluid mt-2">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 card">
+            <div class="register">
+                <div class="registform">
+                    {% if form.errors %}
+                    <p>Confirm that all the details are correct</p>
+                    {% endif %}
+                    <div class="panel panel-default">
+                        <img src="../../static/images/instalogowhite.png" alt="signuplogo "
+                            style="width:190px; height:20px;margin: 5px auto; display: block;">
+                        <div class="panel-body">
+                            <form action="/accounts/register/" method="post">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary btn-md" value="Sign Up">
+                                </div>
+                                <div class="panel-heading">
+                                    <p class="text-muted">Have an account? <a href="/accounts/login/" class="ml-4">
+                                            Login</a></p>
+                                </div>
+                                <input type="hidden" name="next" value="{{next}}">
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+{% endblock %}
