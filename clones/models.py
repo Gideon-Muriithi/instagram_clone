@@ -6,7 +6,7 @@ from tinymce.models import HTMLField
 
 class Profile(models.Model):
     profile_photo = models.ImageField(default='default.jpg', upload_to='profile_pics/')
-    bio = models.TextField()
+    bio = HTMLField()
     user = models.OneToOneField(User,on_delete=models.CASCADE)
 
     def __str__(self):
@@ -42,7 +42,7 @@ class Image(models.Model):
         self.delete()
 
 
-class Comments(models.Model):
+class Comment(models.Model):
     comment = HTMLField()
     posted_on = models.DateTimeField(auto_now=True)
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
