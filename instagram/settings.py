@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'crispy_forms',
     'bootstrap4',
+    'tinymce',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
