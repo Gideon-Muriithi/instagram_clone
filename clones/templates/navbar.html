@@ -4,21 +4,21 @@
 {% if user.is_authenticated %}
 <div class="mb-5">
 <header class="site-header">
-    <nav class="navbar navbar-expand-md  bg-steel fixed-top navbar-dark ">
-        <div class="container">
+    <nav class="navbar navbar-expand-md  bg-steel fixed-top navbar-dark" style="background-color: white; height: 60px;">
+        <div class="container-fluid">
             <div>
                 <button style="background-color: rgb(104, 104, 241)" class="navbar-toggler" type="button"
                     data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarToggle"  class="mt-4 mb-4">
+                <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
-                        <a href="/">
+                        <a href="{% url 'all_images' %}">
                             <img src="../../static/images/instanav.png" alt=""
-                                style="width:53px; height:30px;margin-top:5px; margin-bottom: 50px; margin-left:26px;border-right:1px solid;padding-right: 23px; color: black;">
+                                style="width:53px; height:30px;margin-top:5px; margin-bottom: 0px; margin-left:26px;border-right:1px solid;padding-right: 23px; color: black;">
                         </a>
-                        <a class="ml-2" href="/">
+                        <a class="ml-2" href="{% url 'all_images' %}">
                             <img src="../../static/images/instagram_logo.png" alt=""
                                 style="width:120px; height:35px;">
                         <a style="margin-left: 120px;" class="mt-1">
@@ -28,16 +28,16 @@
                     </div>
 
                     <!-- Navbar Right Side -->
-                    <div class="container navbar-nav mlmargin-bottom: 45px; -5" style="margin-bottom: 45px; ">
+                    <div class="" style="margin-bottom: 55px; ">
                         <a class="ml-5" href="#">
                             <i class="fa fa-heart-o" style="font-size:26px;padding-top: 14%; color: rgb(24, 24, 24);"></i>
                         </a>
 
-                        <a href=" ">
+                        <a href="{% url 'upload_image' %}">
                             <i class="ml-5 material-icons" style="font-size:26px; color: rgb(24, 24, 24);">add_a_photo</i>
                         </a>
 
-                        <a href="#">
+                        <a href="">
                             <i class="ml-5 fa fa-user" style="font-size:28px; color: rgb(24, 24, 24);"></i>
 
                         </a>
