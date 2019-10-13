@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from PIL import Image
+from PIL import Image as pil_img
 from django.utils import timezone
 from tinymce.models import HTMLField
 
@@ -14,13 +14,22 @@ class Profile(models.Model):
 
     def save(self):
         super().save()
-        img = Image.open(self.image.path)
+        img = pil_img.open(self.profile_photo.path)
 
         if img.height > 300 or img.width > 300:
             output_size = (300, 300)
             img.thumbnail(output_size)
-            img.save(self.image.path)
+            img.save(self.profile_photo.path)
 
+    @classmethod
+    def get_by_id(cls, id):
+        profile = Profile.objects.get(user = id)
+        return profile
+
+    @classmethod
+    def filter_by_id(cls, id):
+        profile = Profile.objects.filter(user = id).first()
+        return profile
 
 
 class Image(models.Model):
@@ -41,6 +50,26 @@ class Image(models.Model):
     def delete_image(self):
         self.delete()
 
+    
+    @classmethod
+    def update_caption(cls, update):
+        pass
+    
+    @classmethod
+    def get_image_id(cls, id):
+        image = Image.objects.get(pk=id)
+        return image
+    
+    @classmethod
+    def get_profile_images(cls, profile):
+        images = Image.objects.filter(profile__pk = profile)
+        return images
+    
+    @classmethod
+    def get_all_images(cls):
+        images = Image.objects.all()
+        return images
+
 
 class Comment(models.Model):
     comment = HTMLField()
@@ -51,3 +80,10 @@ class Comment(models.Model):
     def save_comment(self):
         self.save()
     
+    def save_comment(self):
+        self.save()
+    
+    @classmethod
+    def get_comments_by_images(cls, id):
+        comments = Comment.objects.filter(image__pk = id)
+        return comments
