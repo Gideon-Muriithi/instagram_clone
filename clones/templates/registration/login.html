@@ -1,7 +1,7 @@
 {%extends "registration/base.html"%}
 {% load bootstrap4 %}
 {% block content %}
-<div class="container-fluid mt-3" style="background: #f1f1f1;">
+<div class="container-fluid mt-3">
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
@@ -16,10 +16,6 @@
                     </div>
 
                     <div class="loginform">
-                        {% if form.errors %}
-                        <p> Password or Username is incorrect </p>
-                        {% endif %}
-
                         <img class="mt-0" src="../../static/images/instagram_logo.png" alt="signuplogo "
                             style="width:240px; height:70px;margin: 5px auto; display: block;">
 
