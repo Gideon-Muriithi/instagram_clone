@@ -1,6 +1,57 @@
 {%extends "registration/base.html"%}
 {% load bootstrap4 %}
 {% block content %}
+{% if user.is_authenticated %}
+<div class="mb-5">
+<header class="site-header">
+    <nav class="navbar navbar-expand-md  bg-steel fixed-top navbar-dark ">
+        <div class="container">
+            <div>
+                <button style="background-color: rgb(104, 104, 241)" class="navbar-toggler" type="button"
+                    data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggle"  class="mt-4 mb-4">
+                    <div class="navbar-nav mr-auto">
+                        <a href="/">
+                            <img src="../../static/images/instanav.png" alt=""
+                                style="width:53px; height:30px;margin-top:5px;margin-left:26px;border-right:1px solid;padding-right: 23px; color: black;">
+                        </a>
+                        <a class="ml-2" href="/">
+                            <img src="../../static/images/instagram_logo.png" alt=""
+                                style="width:120px; height:35px;">
+                        <a style="margin-left: 120px;">
+                            <input style="height:25px;width:200px; margin-left: 120px;" type="text" class="input-sm form-control"
+                                name="search-form" placeholder="Search">
+                        </a>
+                    </div>
+
+                    <!-- Navbar Right Side -->
+                    <div class="container navbar-nav ml-5">
+
+
+                        <a class="ml-4" href="#">
+                            <i class="fa fa-heart-o" style="font-size:26px;padding-top: 14%;"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="ml-5 fa fa-user" style="font-size:28px"></i>
+
+                        </a>
+                        <a class="ml-5" href="">Profile</a>
+                        <a class="ml-5" href="/accounts/logout/">Logout</a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+</div>
+
+{% else %}
 <div class="container-fluid mt-3">
     <div class="row">
         <div class="col-md-4"></div>
@@ -29,7 +80,7 @@
                                 {% csrf_token %}
 
                                 <div class="form-group">
-                                    <a  href="/accounts/login/" class="btn btn-primary btn-md btn-block">Login</a>
+                                    <a href="/accounts/login/" class="btn btn-primary btn-md btn-block">Login</a>
                                 </div>
                         </div>
                     </div>
@@ -50,18 +101,15 @@
                 <div class="login-playstorebtn">
                     <p class="googlebtn ml-5">
 
-                            <a href="https://www.apple.com/us/search/instagram?src=itunes_serp"><img
-                                src="../../static/images/applestore.jpeg" alt=""
-                                style="width:130px; height:40px "></a>
+                        <a href="https://www.apple.com/us/search/instagram?src=itunes_serp"><img
+                                src="../../static/images/applestore.jpeg" alt="" style="width:130px; height:40px "></a>
                         <a href="https://play.google.com/store/search?q=instagram"><img
-                                src="../../static/images/download.svg" alt=""
-                                style="width:130px; height:40px "></a>
-                        </p>
+                                src="../../static/images/download.svg" alt="" style="width:130px; height:40px "></a>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
-
+{% endif %}
 {% endblock %}
