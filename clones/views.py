@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Image, Profile,Comment
 from django.contrib.auth.models import User
-from .forms import CommentForm, ImageForm
+from .forms import CommentForm, ImageForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 
 def home(request):
@@ -48,14 +48,14 @@ def single_image(request, image_id):
 @login_required(login_url='/accounts/login')
 def edit_profile(request):
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
+        form = ProfileUpdateForm(request.POST, request.FILES)
         if form.is_valid():
             edit = form.save(commit=False)
             edit.user = request.user
             edit.save()
             return redirect('edit_profile')
     else:
-        form = ProfileForm()
+        form = ProfileUpdateForm()
 
     return render(request, 'profiles/edit_profile.html', {'form':form})
 
