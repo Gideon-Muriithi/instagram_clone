@@ -28,7 +28,7 @@
                     </div>
 
                     <!-- Navbar Right Side -->
-                    <div class="" style="margin-bottom: 55px; ">
+                    <div style="margin-bottom: 30px; margin-left: 130px;">
                         <a class="ml-5" href="#">
                             <i class="fa fa-heart-o" style="font-size:26px;padding-top: 14%; color: rgb(24, 24, 24);"></i>
                         </a>
@@ -37,14 +37,11 @@
                             <i class="ml-5 material-icons" style="font-size:26px; color: rgb(24, 24, 24);">add_a_photo</i>
                         </a>
 
-                        <a href="">
+                        <a href="{% url 'profile' user.username %}">
                             <i class="ml-5 fa fa-user" style="font-size:28px; color: rgb(24, 24, 24);"></i>
 
                         </a>
-                        <a class="ml-5" href="" style="color: rgb(24, 24, 24);">Profile</a>
-                        <a class="ml-5" style="color: rgb(24, 24, 24);" href="/accounts/logout/">Logout</a>
-
-
+                        
                     </div>
                 </div>
             </div>
