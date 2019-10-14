@@ -2,15 +2,16 @@
 
 {% block content %}
 {{ form.media }}
+<div style="margin-top: 100px;">
 <div class="container top">
     <div class="row">
         <div class="col-md-12">
             <div class="row top-section">
                 <div class="col-md-5 profile-image">
                     {% if profile_details.prof_pic %}
-                    <img src="{{profile_details.prof_pic.cdn_url}}" alt="profile-photo">
+                    <img src="{{ user.profile.profile_photo.url }}" alt="profile-photo">
                     {% else %}
-                    <img src="/static/img/avatah.png" alt="avatar">
+                    <img style="width: 130px; height: 100px;" class="rounded-circle account-img" src="{{ user.profile.profile_photo.url }}" alt="Profile Picture">
                     {% endif %}
                 </div>
                 <div class="col-md-5 text-center">
@@ -20,7 +21,9 @@
                         </li>
                         {% if profile.username == user.username %}
                         <li class="list-inline-item">
-                            <a class="btn btn-edit" href="{% url 'edit_profile' %}">Edit Profile</a>
+                            <div class="card">
+                            <a style="color: rgb(24, 24, 24);" class="ml-2 mr-2 mt-1 mb-1" href="{% url 'edit_profile' %}">Edit Profile</a>
+                        </div>
                         </li>
                         <li class="list-inline-item">
                             <a data-toggle="modal" data-target="#settings"><i class="fa fa-cog fa-2x"></i></a>
@@ -42,23 +45,19 @@
                             <span class="font-weight-bold">0 </span> Following
                         </li>
                     </ul>
-                    <p class="font3">{{profile_details.bio|safe}}</p>
-                    {% if profile.username == user.username %}
-                    <p><a href="{% url 'upload_image' %}">Add Image</a></p>
-                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
     <hr>
     <div class="row user-images">
-        {% for img in images %}
+        {% for img in all_images %}
         <div class="col-md-4 images">
-            <img src="{{img.photo.cdn_url}}" alt="Image">
+            <img src="{{img.image.url}}" alt="Image">
         </div>
         {% empty %}
         <div class="col-md-12">
-            <h2>Upload images</h2>
+            <h2>You have not uploaded any images yet</h2>
         </div>
         {% endfor %}
     </div>
@@ -67,12 +66,13 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body"><ul class="list-group">
-            <li class="list-group-item text-center"><a href="{% url 'edit_profile' %}">Edit Profile</a></li>
-            <li class="list-group-item text-center"><a href="/logout/">Log Out</a></li>
+            <li class="list-group-item text-center"><a style="color: rgb(24, 24, 24);" href="{% url 'edit_profile' %}">Edit Profile</a></li>
+            <li class="list-group-item text-center"><a style="color: rgb(24, 24, 24);" href="/logout/">Log Out</a></li>
             <li class="list-group-item text-center"><a data-dismiss="modal">Cancel</a></li>
           </ul>
       </div>
     </div>
   </div>
+</div>
 </div>
 {% endblock %}
