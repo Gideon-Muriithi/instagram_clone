@@ -70,6 +70,8 @@ class Image(models.Model):
         images = Image.objects.all()
         return images
 
+    # def get_absolute_url(self):
+    #     return reverse('post-detail', kwargs={'pk': self.pk})
 
 class Comment(models.Model):
     comment = HTMLField()
