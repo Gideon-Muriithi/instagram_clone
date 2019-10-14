@@ -27,6 +27,8 @@ def profile(request, username):
 
     return render(request, 'profiles/profile.html', {'title':title, 'profile':profile, 'profile_details':profile_details, 'images':images})
 
+
+
 @login_required(login_url='/accounts/login')
 def single_image(request, image_id):
     image = Image.get_image_id(image_id)
@@ -43,7 +45,7 @@ def single_image(request, image_id):
     else:
         form = CommentForm()
         
-    return render(request, 'images.html', {'image':image, 'form':form, 'comments':comments})
+    return render(request, 'single_image.html', {'image':image, 'form':form, 'comments':comments})
 
 @login_required(login_url='/accounts/login')
 def edit_profile(request):
