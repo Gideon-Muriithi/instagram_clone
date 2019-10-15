@@ -58,8 +58,27 @@
                     <img style="width: 120px; height: 100px;" class="rounded-circle account-img"
                         src="{{ user.profile.profile_photo.url }}" alt="Profile Picture">
                     <h6 class="mt-5 ml-2 account-heading">{{ user.username }}</h6>
+
                 </div>
-            </div>
+                <div class="card" style="position: fixed; margin-top: 120px;">
+                   
+                        <p><span class="ml-2 mr-4 mt-2 mb-2 text-muted">Suggestions For You</span>
+                            <a href="#">
+                            <span style="color: black;;" class="ml-5 mr-2">See All</span></p>
+                    </a>
+                   
+                    {% for user in all_users %}
+                    <p style="margin-bottom: -15px;"><span class="ml-4 mr-4 mt-2 mb-2">{{ user.username }}</span>
+                   </p>
+                   <a href="#">
+                        <span style="margin-left: 230px;">Follow</span>
+                   </a>
+                  
+                    {% empty %}
+                        <h5 class="ml-4 mr-4 mt-2 mb-2">No users to show<h/5> 
+                    {% endfor %} 
+                    </div> 
+                </div> 
+            </div> 
         </div>
-    </div>
     {% endblock %}
