@@ -9,11 +9,11 @@ def home(request):
 
 @login_required(login_url='/accounts/login/')
 def all_images(request):
+    all_users = User.objects.all()
     all_images = Image.objects.all()
-    all_users = Profile.objects.all()
     next = request.GET.get('next')
     if next: return redirect(next)
-    return render(request, 'images.html',  {"all_images": all_images}, {"all_users":all_users})
+    return render(request, 'images.html',  {"all_images": all_images, "all_users":all_users})
 
 
 def profile(request, username):
