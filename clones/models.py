@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image as pil_img
+import datetime
 from django.utils import timezone
 from tinymce.models import HTMLField
 
 class Profile(models.Model):
     profile_photo = models.ImageField(default='default.jpg', upload_to='profile_pics/')
-    bio = HTMLField()
+    bio = HTMLField(blank=True)
     user = models.OneToOneField(User,on_delete=models.CASCADE)
 
     def __str__(self):
@@ -20,6 +21,9 @@ class Profile(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.profile_photo.path)
+
+    def delete_profile(self):
+        self.delete()
 
     @classmethod
     def get_by_id(cls, id):

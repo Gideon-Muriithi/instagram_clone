@@ -22,10 +22,10 @@ def profile(request, username):
         profile_details = Profile.get_by_id(profile.id)
     except:
         profile_details = Profile.filter_by_id(profile.id)
-    images = Image.get_profile_images(profile.id)
+    user_images = Image.get_profile_images(profile.id)
     title = f'@{profile.username} Instagram photos and videos'
 
-    return render(request, 'profiles/profile.html', {'title':title, 'profile':profile, 'profile_details':profile_details, 'images':images})
+    return render(request, 'profiles/profile.html', {'title':title, 'profile':profile, 'profile_details':profile_details, 'user_images':user_images})
 
 
 

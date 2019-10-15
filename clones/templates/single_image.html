@@ -16,8 +16,8 @@
                             <a class="ml-3"
                                 href="{% url 'profile' username=image.profile.username %}">{{image.profile.username}}</a>
                         </p>
-
-                        <img src="{{image.image.url}}" alt="Image">
+                        <hr>
+                        <img src="{{ image.image.url }}" alt="Image">
                         <ul class="list-inline home-text">
                             <li class="list-inline-item ml-3">
                                 <i class="fa fa-heart-o fa-2x" aria-hidden="true"></i>
