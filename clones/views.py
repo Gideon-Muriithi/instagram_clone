@@ -88,7 +88,7 @@ def profile_update(request):
 def post_image(request):
     current_user = request.user
     if request.method == 'POST':
-        form = PostIMageForm(request.POST, request.FILES, instance=request.user)
+        form = PostIMageForm(request.POST, request.FILES)
         if form.is_valid():
             image = form.save(commit=False)
             image.author = current_user

@@ -22,9 +22,9 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['username', 'email'] 
 
 class PostIMageForm(forms.ModelForm):
     class Meta:
         model = Image
-        fields = ['image']
+        fields = ['image', 'image_caption']

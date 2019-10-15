@@ -38,12 +38,12 @@ class Profile(models.Model):
 
 class Image(models.Model):
     image = models.ImageField(upload_to='images/')
-    image_name = models.CharField(max_length=20)
-    image_caption = models.CharField(max_length=100, blank=True)
+    image_name = models.CharField(max_length=20, blank=True)
+    image_caption = models.CharField(max_length=100)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     likes = models.BooleanField(default=False)
     date_posted = models.DateTimeField(default=timezone.now)
-    profile = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(User, on_delete=models.CASCADE, default='1')
 
     def __str__(self):
         return self.image_caption
@@ -73,6 +73,9 @@ class Image(models.Model):
     def get_all_images(cls):
         images = Image.objects.all()
         return images
+
+    class Meta:
+        ordering = ['-date_posted']    
 
     # def get_absolute_url(self):
     #     return reverse('post-detail', kwargs={'pk': self.pk})
