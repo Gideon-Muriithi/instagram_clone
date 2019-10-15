@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Image, Profile,Comment
 from django.contrib.auth.models import User
-from .forms import CommentForm, ImageForm, ProfileUpdateForm
+from .forms import CommentForm, ImageForm, ProfileUpdateForm, UserUpdateForm
 from django.contrib.auth.decorators import login_required
 
 def home(request):
@@ -63,15 +63,23 @@ def edit_profile(request):
 
 
 @login_required(login_url='/accounts/login')
-def upload_image(request):
+
+def profile_update(request):
     if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            upload = form.save(commit=False)
-            upload.profile = request.user
-            upload.save()
-            return redirect('profile', username=request.user)
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST,request.FILES, instance=request.user.profile)
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            return redirect('all_images')
     else:
-        form = ImageForm()
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'u_form':u_form,
+        'p_form':p_form
+    }
     
-    return render(request, 'profiles/image_upload.html', {'form':form})
+    return render(request, 'profiles/profile_update.html', {'u_form':u_form, "p_form": p_form})
