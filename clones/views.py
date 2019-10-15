@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Image, Profile,Comment
 from django.contrib.auth.models import User
-from .forms import CommentForm, ImageForm, ProfileUpdateForm, UserUpdateForm
+from .forms import CommentForm, ImageForm, ProfileUpdateForm, UserUpdateForm, PostIMageForm
 from django.contrib.auth.decorators import login_required
 
 def home(request):
@@ -23,9 +23,8 @@ def profile(request, username):
     except:
         profile_details = Profile.filter_by_id(profile.id)
     user_images = Image.get_profile_images(profile.id)
-    title = f'@{profile.username} Instagram photos and videos'
 
-    return render(request, 'profiles/profile.html', {'title':title, 'profile':profile, 'profile_details':profile_details, 'user_images':user_images})
+    return render(request, 'profiles/profile.html', {'profile':profile, 'profile_details':profile_details, 'user_images':user_images})
 
 
 
@@ -83,3 +82,18 @@ def profile_update(request):
     }
     
     return render(request, 'profiles/profile_update.html', {'u_form':u_form, "p_form": p_form})
+
+
+@login_required(login_url='/login')
+def post_image(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = PostIMageForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.author = current_user
+            image.save()
+        return redirect('all_images')
+    else:
+        form = PostIMageForm(auto_id=False)
+    return render(request, 'upload_image.html', {"form": form})
