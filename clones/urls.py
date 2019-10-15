@@ -10,6 +10,7 @@ urlpatterns= [
     url(r'^image/(?P<image_id>\d+)', views.single_image, name='single_image'),
     url(r'^accounts/edit/',views.edit_profile, name='edit_profile'),
     url(r'^upload/$', views.profile_update, name='profile_update'),
+    url(r'^upload/image/', views.post_image, name='post_image'),
 ]
 
 if settings.DEBUG:
