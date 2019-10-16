@@ -4,9 +4,6 @@ This is an instagram clone app developed with django with the aim of getting a b
 # Description
 This is a simple clone of instagram. The app allows user to create accounts and register to them with their credentials. The site also supports uploading of images. Logged in users are able to view photos uploaded by other users on the home page of site.
 
-# Specifications
-Find the specs here
-
 # Set Up and Installations
 ### Prerequisites
 Ubuntu Software
