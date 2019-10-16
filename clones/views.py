@@ -6,17 +6,17 @@ from django.contrib.auth.decorators import login_required
 from .email import send_welcome_email
 
 
-# def register(request):
-#     if request.method == 'POST':
-#         form = UserRegisterForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             username = form.cleaned_data.get('username')
-#             messages.success(request, f'Account created successfully. You can now login!')
-#             return redirect('/accounts/login/')
-#     else:
-#         form = UserRegisterForm()
-#     return render(request, 'registration/registration_form.html', {'form':form})
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            return redirect('/accounts/login/')
+            
+    else:
+        form = UserRegisterForm()
+    return render(request, 'registration/registration_form.html', {'form':form})
 
 
 def home(request):

@@ -164,4 +164,3 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'all_images'
 LOGIN_URL = 'login'
-REGISTER_REDIRECT_URL='/accounts/logout'
