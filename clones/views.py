@@ -12,9 +12,11 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            email = form.cleaned_data['email']
-            recipient.save()
-            send_welcome_email(name,email)
+            
+            # email = form.cleaned_data['email']
+            # recipient = NewsLetterRecipients(name = name,email =email)
+            # recipient.save()
+            # send_welcome_email(name,email)
 
             return redirect('/accounts/login/')
             
