@@ -61,5 +61,5 @@ Like and follow functionalities not working as per the expections
 # Support and contact details
 For any comments, reviews or advice contact me on gideonapptests@gmail.com.
 
-# License
+# MIT License
 Copyright (c) Gideon Muriithi
