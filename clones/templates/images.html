@@ -15,14 +15,8 @@
                                     <img style="width: 70px; height: 60px;" class="ml-2 mt-2 rounded-circle account-img"
                                         src="{{ user.profile.profile_photo.url }}" alt="Profile Picture"></li>
                                 <li class="list-inline-item">
-                                    <a
+                                    <a style="color: black;"
                                         href="{% url 'profile' username=image.profile.username %}">{{ image.profile.username }}</a>
-                                </li>
-                                <br>
-                                <li class="list-inline-item" style="margin-left: 85px;">
-                                    {% autoescape on %}
-                                    <p>{{ image.image_caption }} </p>
-                                    {% endautoescape %}
                                 </li>
                             </ul>
                             <hr>
@@ -41,12 +35,10 @@
                                 </li>
                             </ul>
                             <h6 class="ml-4 text-muted">{{ image.date_posted|timesince }} AGO</h6>
+                            <p class="ml-3">{{ image.image_caption }} </p>
                         </div>
                     </div>
-
-
-
-
+                    
                 </div>
                 {% empty %}
                 <h2 class="mt-5">No images. Follow some people to see their images</h2>
