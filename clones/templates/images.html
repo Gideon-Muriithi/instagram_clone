@@ -13,7 +13,7 @@
                             <ul class="list-inline home-list mb-0">
                                 <li class="list-inline-item">
                                     <img style="width: 70px; height: 60px;" class="ml-2 mt-2 rounded-circle account-img"
-                                        src="{{ user.profile.profile_photo.url }}" alt="Profile Picture"></li>
+                                        src="{{ image.profile.profile.profile_photo.url }}" alt="Profile Picture"></li>
                                 <li class="list-inline-item">
                                     <a style="color: black;"
                                         href="{% url 'profile' username=image.profile.username %}">{{ image.profile.username }}</a>
@@ -41,14 +41,14 @@
                     
                 </div>
                 {% empty %}
-                <h2 class="mt-5">No images. Follow some people to see their images</h2>
+                <h2 class="mt-5">No images to show. Follow some people to see their images</h2>
                 {% endfor %}
             </div>
 
             <div class="col-md-4">
                 <div class="media" style="position: fixed; ">
                     <img style="width: 120px; height: 100px;" class="rounded-circle account-img"
-                        src="{{ user.profile.profile_photo.url }}" alt="Profile Picture">
+                        src="{{ user.profile.profile_photo.url }}" alt="No profile photo">
                     <h6 class="mt-5 ml-2 account-heading">{{ user.username }}</h6>
 
                 </div>

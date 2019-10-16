@@ -4,6 +4,8 @@ from PIL import Image as pil_img
 import datetime
 from django.utils import timezone
 from tinymce.models import HTMLField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class Profile(models.Model):
     profile_photo = models.ImageField(default='default.jpg', upload_to='profile_pics/')
@@ -13,15 +15,14 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-    def save(self):
-        super().save()
-        img = pil_img.open(self.profile_photo.path)
-
-        if img.height > 300 or img.width > 300:
-            output_size = (300, 300)
-            img.thumbnail(output_size)
-            img.save(self.profile_photo.path)
-
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
+        
     def delete_profile(self):
         self.delete()
 
@@ -45,7 +46,6 @@ class Image(models.Model):
     image = models.ImageField(upload_to='images/')
     image_name = models.CharField(max_length=20, blank=True)
     image_caption = models.CharField(max_length=100)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     likes = models.BooleanField(default=False)
     date_posted = models.DateTimeField(default=timezone.now)
     profile = models.ForeignKey(User, on_delete=models.CASCADE, default='1')

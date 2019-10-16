@@ -1,8 +1,23 @@
 from django.shortcuts import render,redirect
 from .models import Image, Profile,Comment
 from django.contrib.auth.models import User
-from .forms import CommentForm, ImageForm, ProfileUpdateForm, UserUpdateForm, PostIMageForm
+from .forms import CommentForm, ImageForm, ProfileUpdateForm, UserUpdateForm, PostIMageForm, UserRegisterForm
 from django.contrib.auth.decorators import login_required
+from .email import send_welcome_email
+
+
+# def register(request):
+#     if request.method == 'POST':
+#         form = UserRegisterForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data.get('username')
+#             messages.success(request, f'Account created successfully. You can now login!')
+#             return redirect('/accounts/login/')
+#     else:
+#         form = UserRegisterForm()
+#     return render(request, 'registration/registration_form.html', {'form':form})
+
 
 def home(request):
     return render(request, 'base.html')
@@ -91,7 +106,7 @@ def post_image(request):
         form = PostIMageForm(request.POST, request.FILES)
         if form.is_valid():
             image = form.save(commit=False)
-            image.author = current_user
+            image.profile = current_user
             image.save()
         return redirect('all_images')
     else:
