@@ -26,7 +26,7 @@ Run migrations using these respective commmands: python3.6 manage.py makemigrati
 
 Run the app using this command: python3.6 manage.py runserver on the terminal.You can then open the app on your browser
 
-Create .env file and paste paste the following filling where appropriate:
+Create .env file and paste the following text and fill your details where appropriate
 
 #### SECRET_KEY = '<Secret_key>'
 #### DBNAME = 'instagram'
